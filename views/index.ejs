@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         .title {
             background-color: gray;
             color: red;
@@ -16,66 +18,62 @@
             text-align: center;
             padding: 10px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid black;
             padding: 8px;
             text-align: center;
         }
+
         th {
             background-color: lightgreen;
         }
     </style>
 </head>
+
 <body>
-    <div class="title">Danh sách các Môn học</div>
-    <table>
-        <tr>
-            <th>STT</th>
-            <th>Tên môn học</th>
-            <th>Loại môn học</th>
-            <th>Học kỳ</th>
-            <th>Khoa</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Cơ sở dữ liệu</td>
-            <td>Cơ sở</td>
-            <td>HK1-2020-2021</td>
-            <td>K.CNTT</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Cấu trúc dữ liệu</td>
-            <td>Cơ sở</td>
-            <td>HK1-2020-2021</td>
-            <td>K.CNTT</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Công nghệ phần mềm</td>
-            <td>Cơ sở ngành</td>
-            <td>HK1-2020-2021</td>
-            <td>K.CNTT</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Công nghệ mới</td>
-            <td>Chuyên ngành</td>
-            <td>HK1-2020-2021</td>
-            <td>K.CNTT</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Đồ án môn học</td>
-            <td>Chuyên ngành</td>
-            <td>HK1-2020-2021</td>
-            <td>K.CNTT</td>
-        </tr>
-    </table>
+    <div>
+        <form action="/" method="POST" id="create" enctype="multipart/form-data">
+            <input type="number" name="ma_sp">
+            <input type="text" name="ten_sp">
+            <input type="number" name="so_luong">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <form method="post" action="/delete" enctype="multipart/form-data">
+        <div><input type="submit" value="Xoa"></div>
+        <div class="title">Danh sách các Môn học</div>
+        <table>
+            <tr>
+
+                <th>Ma Sp</th>
+                <th>Ten Sp</th>
+                <th>So Luong</th>
+                <th>Chon</th>
+            </tr>
+            <% for (let i=0; i< dynamoDB.length; i++) { %>
+                <tr>
+                    <td>
+                        <%=dynamoDB[i].ma_sp%>
+                    </td>
+                    <td>
+                        <%=dynamoDB[i].ten_sp%>
+                    </td>
+                    <td>
+                        <%=dynamoDB[i].so_luong%>
+                    </td>
+                    <td><input type="checkbox" name="<%=dynamoDB[i].ma_sp%>"></td>
+                </tr>
+                <% } %>
+        </table>
+    </form>
 </body>
+
 </html>
